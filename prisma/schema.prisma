@@ -11,21 +11,56 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-model User {
-  id        String    @id @default(cuid())
-  username  String    @unique
-  password  String?
-  created   DateTime  @default(now())
-  updated   DateTime  @updatedAt()
-  sessions  Session[]
+model Option {
+  id      String   @id @default(cuid())
+  name    String   @unique
+  value   String   @db.VarChar(255)
+  created DateTime @default(now())
+  updated DateTime @updatedAt()
 }
 
-model Session {
-  id        String    @id @default(cuid())
-  token     String    @unique
-  active    Boolean   @default(true)
-  created   DateTime  @default(now())
-  updated   DateTime  @updatedAt()
-  user      User?     @relation(fields: [user_id], references: [id])
-  user_id   String?
+model User {
+  id       String         @id @default(cuid())
+  username String         @unique
+  password String?
+  created  DateTime       @default(now())
+  updated  DateTime       @updatedAt()
+  sessions User_Session[]
+}
+
+model User_Session {
+  id      String   @id @default(cuid())
+  token   String   @unique
+  active  Boolean  @default(true)
+  created DateTime @default(now())
+  updated DateTime @updatedAt()
+  user    User?    @relation(fields: [user_id], references: [id])
+  user_id String?
+}
+
+model User_Group {
+  id         String            @id @default(cuid())
+  name       String            @unique
+  display    String
+  created    DateTime          @default(now())
+  updated    DateTime          @updatedAt()
+  group_role User_Group_Role[]
+}
+
+model User_Role {
+  id         String            @id @default(cuid())
+  name       String            @unique
+  display    String
+  created    DateTime          @default(now())
+  updated    DateTime          @updatedAt()
+  group_role User_Group_Role[]
+}
+
+model User_Group_Role {
+  id            String     @id @default(cuid())
+  user_group    User_Group @relation(fields: [user_group_id], references: [id])
+  user_group_id String
+  user_role     User_Role  @relation(fields: [user_role_id], references: [id])
+  user_role_id  String
+  assigned      DateTime   @default(now())
 }

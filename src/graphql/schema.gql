@@ -2,10 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Mutation {
-  AdminInit(password: String!, username: String!): String!
+type AppModel {
+  name: String!
 }
 
 type Query {
-  root: String!
+  App: AppModel!
 }
