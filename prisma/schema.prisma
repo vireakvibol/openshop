@@ -62,5 +62,6 @@ model User_Group_Role {
   user_group_id String
   user_role     User_Role  @relation(fields: [user_role_id], references: [id])
   user_role_id  String
-  assigned      DateTime   @default(now())
+  created    DateTime          @default(now())
+  updated    DateTime          @updatedAt()
 }
