@@ -27,7 +27,7 @@
     "postinstall": "electron-builder install-app-deps",
     "ng": "ng",
     "start": "npm-run-all -p electron:serve ng:serve",
-    "ng:serve": "ng serve -c web -o",
+    "ng:serve": "ng serve -c web",
     "build": "npm run electron:serve-tsc && ng build --base-href ./",
     "build:dev": "npm run build -- -c dev",
     "build:prod": "npm run build -- -c production",
@@ -45,6 +45,7 @@
     "lint": "ng lint"
   },
   "dependencies": {
+    "@angular/animations": "14.0.3",
     "@angular/common": "13.3.1",
     "@angular/compiler": "13.3.1",
     "@angular/core": "13.3.1",
