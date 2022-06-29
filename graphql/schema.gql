@@ -2,8 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input InitializeInputType {
+  password: String!
+  privateKey: String!
+  username: String!
+}
+
 type Mutation {
-  AdminInit(password: String!, username: String!): String!
+  adminInitialize(input: InitializeInputType!): String!
 }
 
 type Query {

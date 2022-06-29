@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AdminResolver } from './admin.resolver';
+import { CoreResolver } from './core.resolver';
 
-describe('AdminResolver', () => {
-  let resolver: AdminResolver;
+describe('CoreResolver', () => {
+  let resolver: CoreResolver;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AdminResolver],
+      providers: [CoreResolver],
     }).compile();
 
-    resolver = module.get<AdminResolver>(AdminResolver);
+    resolver = module.get<CoreResolver>(CoreResolver);
   });
 
   it('should be defined', () => {
